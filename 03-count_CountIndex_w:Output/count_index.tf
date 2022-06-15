@@ -13,7 +13,7 @@ provider "aws" {
 
 resource "aws_instance" "myec2" {
     ami = "ami-079b5e5b3971bd10d"
-    instance_type = "t2.micro"
+    instance_type = var.instancetype
     count = 3
     tags = {
         Name = "myec2-${count.index}"
@@ -27,10 +27,10 @@ resource "aws_iam_user" "for_lb" {
 }
 
 output "instance_name_id" {
-    value = ["${aws_instance.myec2.*.public_ip}"]
+    value = aws_instance.myec2.*.public_ip
     description = "Public IP Address for instance"
 }
 
 output "iam_user" {
-    value = aws_iam_user.for_lb
+    value = aws_iam_user.for_lb.*.name
 }
