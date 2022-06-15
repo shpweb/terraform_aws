@@ -1,4 +1,4 @@
-# First Demo Exercise to test our learning.
+# First Demo Exercise to test the learning.
 
 ## We would like to provision the AWS Infa as per the following Conditions:
 
