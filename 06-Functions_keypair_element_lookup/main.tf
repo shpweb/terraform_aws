@@ -1,13 +1,15 @@
-variable "my_ip" {
-    default = "123.201.2.99/32"
+locals {
+    time = formatdate("DD MMM YYYY hh:mm ZZZ",timestamp())
 }
 resource "aws_instance" "myec2" {
-    ami = "ami-079b5e5b3971bd10d"
+    ami = lookup(var.ami,var.region)
     instance_type = "t2.micro"
     key_name = "webaayu-linux-mumbai"
     security_groups = ["allow_ssh"]
+    count = 2
+    availability_zone = var.az-s[count.index]
     tags = {
-        Name = "sg-keypair-ec2"
+        Name = element(var.nametag,count.index)
     }
 }
 
@@ -24,4 +26,8 @@ resource "aws_security_group" "allow_ssh" {
     tags = {
         Name = "Allow_SSH"
     }
+}
+
+output "timestamp" {
+    value = local.time
 }
