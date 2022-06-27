@@ -1,8 +1,8 @@
 ## Exercise-2:
-### Create a solution with below resources - 
-1. ELB
-2. Autoscaling Group 
-3. Launch Template
-4. Scaling Policy 
-5. DynamoDB
-6. 
+### Create below resources which are part of a web application architecture - 
+1. Private VPC / Subnet
+2. IAM 
+3. ECR 
+4. ELB
+5. Autoscaling with Launch Template
+6. DynamoDB
